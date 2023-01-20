@@ -11,6 +11,10 @@
 @section('content')
 <div class="container">
     <div class="row mx-auto my-5 justify-content-center">
+        <div class="mx-auto my-5">
+            <a class="btn btn-primary mx-2" href="{{ url('login') }}">admin login</a>
+            <a class="btn btn-primary mx-2" href="{{ url('register') }}">admin register</a>
+        </div>
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>

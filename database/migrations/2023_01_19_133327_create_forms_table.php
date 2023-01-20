@@ -22,7 +22,7 @@ class CreateFormsTable extends Migration
             $table->string('phone');
             $table->string('country');
             $table->string('city');
-            $table->string('referal');
+            $table->string('referal')->nullable();
             $table->timestamps();
         });
     }
