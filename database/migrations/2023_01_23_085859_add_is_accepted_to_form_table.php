@@ -14,7 +14,7 @@ class AddIsAcceptedToFormTable extends Migration
     public function up()
     {
         Schema::table('forms', function (Blueprint $table) {
-            $table->boolean('is_confirmed')->default(0);
+            $table->boolean('is_confirmed')->nullable();
         });
     }
 
