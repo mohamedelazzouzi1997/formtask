@@ -8,6 +8,11 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center mb-10">
+        @if (Session::has('status'))
+            <div class="alert alert-primary" role="alert">
+                {{ Session::get('status') }}
+            </div>
+        @endif
         <div class="col-md-8 mb-5">
             <form action="{{ route('filter') }}" class="form-group" method="get">
                 @csrf
@@ -54,6 +59,7 @@
               <th scope="col">country</th>
               <th scope="col">city</th>
               <th scope="col">referral</th>
+              <th scope="col">actions</th>
             </tr>
           </thead>
           <tbody>
@@ -65,7 +71,22 @@
               <td>{{ $data->country }}</td>
               <td>{{ $data->city }}</td>
               <td>{{ $data->firstName }}</td>
-              <td>{{ $data->referal }}</td>
+              <td>{{ $data->is_confirmed }}</td>
+              <td>
+                @if ($data->is_confirmed != 1)
+                <form class="d-inline" action="{{ route('form.accept',$data->id) }}" method="post">
+                    @csrf
+                    <button type="submit" class="btn btn-success">Accept <i class="fa-solid fa-check"></i></button>
+                </form>
+                @endif
+                @if ($data->is_confirmed != 0)
+                <form class="d-inline"  action="{{ route('form.reject',$data->id) }}" method="post">
+                    @csrf
+                    <button type="submit"  class="btn btn-warning">Reject <i class="fa-solid fa-xmark"></i></button>
+                </form>
+                @endif
+                  <a href="{{ route('form.delete',$data->id) }}" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+              </td>
             </tr>
             @endforeach
           </tbody>

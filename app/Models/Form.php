@@ -12,10 +12,11 @@ class Form extends Model
         'firstName',
         'lastName',
         'email',
-        'emadateOfBirthil',
+        'dateOfBirth',
         'phone',
         'country',
         'city',
         'referal',
+        'is_confirmed'
     ];
 }

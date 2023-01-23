@@ -39,4 +39,40 @@ class adminController extends Controller
         $datas = Form::latest()->get(); //table data
         return view('admin.dashboard',compact('datas','chart'));
     }
+
+    public function formReject($id){
+        $form = Form::find($id)->update([
+            'is_confirmed' => 0
+        ]);
+        if($form){
+            session()->flash('status','the form was rejected successfully');
+            return back();
+        }
+            session()->flash('status','something went wrong');
+            return back();
+    }
+
+
+    public function formAccept($id){
+
+        $form = Form::find($id)->update([
+            'is_confirmed' => 1
+        ]);
+        if($form){
+            session()->flash('status','the form was accepted successfully');
+            return back();
+        }
+            session()->flash('status','something went wrong');
+            return back();
+    }
+
+    public function formDelete($id){
+        $form = Form::find($id)->delete();
+        if($form){
+            session()->flash('status','the form was deleted successfully');
+            return back();
+        }
+            session()->flash('status','something went wrong');
+            return back();
+    }
 }

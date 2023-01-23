@@ -20,6 +20,13 @@ Route::get('form',[formController::class,'index'])->name('form');
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [adminController::class,'index'])->name('home');
     Route::get('/home/filter',[adminController::class,'index'])->name('filter');
+
+
+    Route::post('/home/form/reject/{id}',[adminController::class,'formReject'])->name('form.reject');
+    Route::post('/home/form/accept/{id}',[adminController::class,'formAccept'])->name('form.accept');
+    Route::get('/home/form/delete/{id}',[adminController::class,'formDelete'])->name('form.delete');
+
+
 });
 Route::post('form/store',[formController::class,'store'])->name('send.form');
 
