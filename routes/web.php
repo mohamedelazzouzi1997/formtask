@@ -15,7 +15,7 @@ use App\Http\Controllers\adminController;
 |
 */
 
-Route::redirect('/', 'form', 301);;
+Route::get('/links',[formController::class,'links'])->name('links');
 Route::get('form',[formController::class,'index'])->name('form');
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [adminController::class,'index'])->name('home');

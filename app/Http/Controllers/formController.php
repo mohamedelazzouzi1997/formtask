@@ -39,4 +39,9 @@ class formController extends Controller
             return back();
         }
     }
+
+    public function links(){
+
+        return view('client.links');
+    }
 }
