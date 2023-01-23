@@ -71,19 +71,31 @@
               <td>{{ $data->country }}</td>
               <td>{{ $data->city }}</td>
               <td>{{ $data->firstName }}</td>
-              <td>{{ $data->is_confirmed }}</td>
+              <td>{{ $data->referal }}</td>
               <td>
-                @if ($data->is_confirmed != 1)
-                <form class="d-inline" action="{{ route('form.accept',$data->id) }}" method="post">
-                    @csrf
-                    <button type="submit" class="btn btn-success">Accept <i class="fa-solid fa-check"></i></button>
-                </form>
-                @endif
-                @if ($data->is_confirmed != 0)
-                <form class="d-inline"  action="{{ route('form.reject',$data->id) }}" method="post">
-                    @csrf
-                    <button type="submit"  class="btn btn-warning">Reject <i class="fa-solid fa-xmark"></i></button>
-                </form>
+                @if ($data->is_confirmed == null)
+                    <form class="d-inline" action="{{ route('form.accept',$data->id) }}" method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-success">Accept <i class="fa-solid fa-check"></i></button>
+                    </form>
+                    <form class="d-inline"  action="{{ route('form.reject',$data->id) }}" method="post">
+                        @csrf
+                        <button type="submit"  class="btn btn-warning">Reject <i class="fa-solid fa-xmark"></i></button>
+                    </form>
+                @else
+
+                    @if ($data->is_confirmed != 1)
+                    <form class="d-inline" action="{{ route('form.accept',$data->id) }}" method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-success">Accept <i class="fa-solid fa-check"></i></button>
+                    </form>
+                    @endif
+                    @if ($data->is_confirmed != 0)
+                    <form class="d-inline"  action="{{ route('form.reject',$data->id) }}" method="post">
+                        @csrf
+                        <button type="submit"  class="btn btn-warning">Reject <i class="fa-solid fa-xmark"></i></button>
+                    </form>
+                    @endif
                 @endif
                   <a href="{{ route('form.delete',$data->id) }}" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
               </td>
