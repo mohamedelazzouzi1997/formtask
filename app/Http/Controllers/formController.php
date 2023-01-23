@@ -15,7 +15,7 @@ class formController extends Controller
     }
     public function store(Request $request){
 
-        $request->validate([
+        $all = $request->validate([
             'firstName' => 'required',
             'lastName' => 'required',
             'email' => 'required|email',
@@ -23,18 +23,11 @@ class formController extends Controller
             'phone' => 'required',
             'country' => 'required',
             'city' => 'required',
+            'referal' => 'required',
         ]);
 
-        $form = Form::Create([
-            'firstName' => $request->firstName,
-            'lastName' => $request->lastName,
-            'email' => $request->email,
-            'dateOfBirth' => $request->dateOfBirth,
-            'phone' => $request->phone,
-            'country' => $request->country,
-            'city' => $request->city,
-            'referal' =>$request->referral ?? null,
-        ]);
+        $form = Form::Create($all);
+
         if($form){
             session()->flash('status','form submited successfully');
             return back();

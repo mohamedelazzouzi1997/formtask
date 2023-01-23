@@ -42,7 +42,15 @@
 
 
                 </div>
+                <div class="card-body">
 
+                    <h1>Referral Chart</h1>
+                    <div>
+                        {!! $chart2->container() !!}
+                    </div>
+
+
+                </div>
             </div>
         </div>
     </div>
@@ -65,6 +73,7 @@
           <tbody>
             @foreach ($datas as $data )
             <tr>
+              <td>{{ $data->id }}</td>
               <td>{{ $data->firstName }}</td>
               <td>{{ $data->lastName }}</td>
               <td>{{ $data->phone }}</td>
@@ -73,29 +82,21 @@
               <td>{{ $data->firstName }}</td>
               <td>{{ $data->referal }}</td>
               <td>
-                @if ($data->is_confirmed == null)
-                    <form class="d-inline" action="{{ route('form.accept',$data->id) }}" method="post">
-                        @csrf
-                        <button type="submit" class="btn btn-success">Accept <i class="fa-solid fa-check"></i></button>
-                    </form>
+                @if ($data->is_confirmed)
                     <form class="d-inline"  action="{{ route('form.reject',$data->id) }}" method="post">
                         @csrf
                         <button type="submit"  class="btn btn-warning">Reject <i class="fa-solid fa-xmark"></i></button>
                     </form>
                 @else
-
-                    @if ($data->is_confirmed != 1)
                     <form class="d-inline" action="{{ route('form.accept',$data->id) }}" method="post">
                         @csrf
                         <button type="submit" class="btn btn-success">Accept <i class="fa-solid fa-check"></i></button>
                     </form>
-                    @endif
-                    @if ($data->is_confirmed != 0)
                     <form class="d-inline"  action="{{ route('form.reject',$data->id) }}" method="post">
                         @csrf
                         <button type="submit"  class="btn btn-warning">Reject <i class="fa-solid fa-xmark"></i></button>
                     </form>
-                    @endif
+
                 @endif
                   <a href="{{ route('form.delete',$data->id) }}" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
               </td>
@@ -103,11 +104,16 @@
             @endforeach
           </tbody>
         </table>
+
+        <div class="d-flex justify-content-center">
+            {{ $datas->links() }}
+        </div>
     </div>
 </div>
 @endsection
 @section('scripts')
 {!! $chart->script() !!}
+{!! $chart2->script() !!}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charse t="utf-8"></script>
 
 @endsection
