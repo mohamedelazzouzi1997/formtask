@@ -22,9 +22,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home/filter',[adminController::class,'index'])->name('filter');
 
 
-    Route::post('/home/form/reject/{id}',[adminController::class,'formReject'])->name('form.reject');
-    Route::post('/home/form/accept/{id}',[adminController::class,'formAccept'])->name('form.accept');
-    Route::get('/home/form/delete/{id}',[adminController::class,'formDelete'])->name('form.delete');
+    Route::post('/home/form/reject/{id}',[adminController::class,'rejectForm'])->name('form.reject');
+    Route::post('/home/form/accept/{id}',[adminController::class,'acceptForm'])->name('form.accept');
+    Route::get('/home/form/delete/{id}',[adminController::class,'deleteForm'])->name('form.delete');
 
 
 });

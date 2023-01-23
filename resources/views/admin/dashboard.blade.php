@@ -37,7 +37,7 @@
 
                     <h1>Form Submited Chart</h1>
                     <div>
-                        {!! $chart->container() !!}
+                        {!! $created_chart->container() !!}
                     </div>
 
 
@@ -46,7 +46,7 @@
 
                     <h1>Referral Chart</h1>
                     <div>
-                        {!! $chart2->container() !!}
+                        {!! $referralChart->container() !!}
                     </div>
 
 
@@ -71,7 +71,7 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($datas as $data )
+            @foreach ($Form_Data as $data )
             <tr>
               <td>{{ $data->id }}</td>
               <td>{{ $data->firstName }}</td>
@@ -106,14 +106,14 @@
         </table>
 
         <div class="d-flex justify-content-center">
-            {{ $datas->links() }}
+            {{ $Form_Data->links() }}
         </div>
     </div>
 </div>
 @endsection
 @section('scripts')
-{!! $chart->script() !!}
-{!! $chart2->script() !!}
+{!! $created_chart->script() !!}
+{!! $referralChart->script() !!}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charse t="utf-8"></script>
 
 @endsection

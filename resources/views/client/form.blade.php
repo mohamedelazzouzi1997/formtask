@@ -31,7 +31,7 @@
         @endif
         <form action="{{ route('send.form') }}" method="post" class="bg-secondary p-3">
             @csrf
-            <input type="hidden" name="referal" value="{{ request()->referral }}">
+            <input type="hidden" name="referal" value="{{ request()->Referral_Link }}">
           <div class="form-row">
             <div class="form-group col-md-12">
               <label for="fistName">First Name</label>

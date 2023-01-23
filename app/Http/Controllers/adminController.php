@@ -17,32 +17,37 @@ class adminController extends Controller
 
     public function index(Request $request){
 
-        $datas = Form::latest()->paginate(5); //table data
 
+        $Form_Data = Form::latest()->paginate(5); //table data
+
+        $Filter_Date_From = $request->date_start ?? Carbon::now();
+        $Filter_Date_To = $request->date_end ?? Carbon::now();
+
+        //checking if the filter form is submited
         if($request->has('date_start') || $request->has('date_end')){
-
-            $startDate = $request->date_start ?? Carbon::now();
-            $endDate = $request->date_end ?? Carbon::now();
-
-            $chartdata = Form::selectRaw('DATE(created_at) as x, COUNT(*) as y') // chart data
-                    ->groupBy('x')
-                    ->whereDate('created_at', '>=', $startDate)
-                    ->whereDate('created_at', '<=', $endDate)
+            //select colume created_at between two date from the form table
+            $chartData = Form::selectRaw('DATE(created_at) as created, COUNT(*) as created_count') // chart data
+                    ->groupBy('created')
+                    ->whereDate('created_at', '>=', $Filter_Date_From)
+                    ->whereDate('created_at', '<=', $Filter_Date_To)
                     ->get();
 
+            //select colume referal between two date from the form table
             $chartReferal=  Form::select('referal')
                     ->selectRaw('count(referal) as counts')
-                    ->whereDate('created_at', '>=', $startDate)
-                    ->whereDate('created_at', '<=', $endDate)
+                    ->whereDate('created_at', '>=', $Filter_Date_From)
+                    ->whereDate('created_at', '<=', $Filter_Date_To)
                     ->groupBy('referal')
                     ->get();
 
         }else{
-            $chartdata = Form::selectRaw('DATE(created_at) as x, COUNT(*) as y') // chart data
-                    ->groupBy('x')
+            //select colume created_at from the form table
+            $chartData = Form::selectRaw('DATE(created_at) as created, COUNT(*) as created_count') // chart data
+                    ->groupBy('created')
                     ->where('created_at', '>', Carbon::now()->subYear())
                     ->get();
-
+            // dd($chartdata);
+            //select colume referal from the form table
             $chartReferal=  Form::select('referal')
                     ->selectRaw('count(referal) as counts')
                     ->where('created_at', '>', Carbon::now()->subYear())
@@ -50,24 +55,27 @@ class adminController extends Controller
                     ->get();
         }
 
-        $chart = new FormChart;
-        $chart->labels($chartdata->pluck('x'));
-        $chart->dataset('Submited Form', 'bar', $chartdata->values())->backgroundColor('rgba(5,8,240,.5)');
+        //create new chart for submited form by created_at
+        $created_chart = new FormChart;
+        $created_chart->labels($chartData->pluck('created'));
+        $created_chart->dataset('Submited Form', 'bar', $chartData->pluck('created_count'))->backgroundColor('rgba(5,8,240,.5)');
 
-        $chart2 = new FormChart;
-        $chart2->labels($chartReferal->pluck('referal'));
-        $chart2->dataset('Referral', 'bar', $chartReferal->pluck('counts'))->backgroundColor('rgba(5,250,240,.5)');
+        //create new chart for Referral links
+        $referralChart = new FormChart;
+        $referralChart->labels($chartReferal->pluck('referal'));
+        $referralChart->dataset('Referral Links', 'bar', $chartReferal->pluck('counts'))->backgroundColor('rgba(5,250,240,.5)');
 
-        return view('admin.dashboard',compact('datas','chart','chart2'));
+        return view('admin.dashboard',compact('Form_Data','created_chart','referralChart'));
     }
 
-    public function formReject($id){
+    //function for reject a form
+    public function rejectForm($id){
 
         $form = Form::find($id);
         $form->update([
             'is_confirmed' => 0
         ]);
-                // dd($form);
+
         if($form){
             Mail::to($form->email)->send(new FormMail('Rejected'));
             session()->flash('status','the form was rejected successfully');
@@ -77,13 +85,15 @@ class adminController extends Controller
             return back();
     }
 
+    //function for accept a form
 
-    public function formAccept($id){
+    public function acceptForm($id){
 
         $form = Form::find($id);
         $form->update([
            'is_confirmed' => 1
         ]);
+
         if($form){
             Mail::to($form->email)->send(new FormMail('Rejected'));
             session()->flash('status','the form was accepted successfully');
@@ -93,7 +103,9 @@ class adminController extends Controller
             return back();
     }
 
-    public function formDelete($id){
+    // hard delete a form
+    public function deleteForm($id){
+        //Select raw from form table by id and hard delete it
         $form = Form::find($id)->delete();
         if($form){
             session()->flash('status','the form was deleted successfully');

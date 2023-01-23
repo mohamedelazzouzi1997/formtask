@@ -10,23 +10,26 @@ class formController extends Controller
     //
 
     public function index(Request $request){
-        $referral = $request->referral;
-        return view('client.form',compact('referral'));
+
+        $Referral_Link = $request->referral;//get the referral from the link
+
+        return view('client.form',compact('Referral_Link'));
     }
     public function store(Request $request){
 
+        //validating data from the form
         $all = $request->validate([
             'firstName' => 'required',
             'lastName' => 'required',
             'email' => 'required|email',
             'dateOfBirth' => 'required',
-            'phone' => 'required',
+            'phone' => 'numeric|required',
             'country' => 'required',
             'city' => 'required',
             'referal' => 'required',
         ]);
 
-        $form = Form::Create($all);
+        $form = Form::Create($all); //store form data to database
 
         if($form){
             session()->flash('status','form submited successfully');
