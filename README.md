@@ -42,7 +42,11 @@ this project is about user using referral link and submite some data. and despla
 ```bash
   php artisan migrate
 ```
+### 8. Seed fake data for testing
 
+```bash
+  php artisan db:seed
+```
 # Packages and libraries used in the project
 ### 1. login and registration
 for the admin login and registration i used [Laravel Fortify](https://laravel.com/docs/9.x/fortify).
