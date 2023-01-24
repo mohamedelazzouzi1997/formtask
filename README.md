@@ -294,27 +294,19 @@ and we send mail with message (Rejected)
     }
 ```
 
-- function Reject
-this function like the accepte function we just updating [is_confirmed] colume to 0.  
-and we send mail with message (Rejected)
+#### delete function
+same as the Accept and reject methods we select the raw by primery key[id] from the form table and we use a laravel function called [delete()](https://laravel.com/docs/9.x/queries#delete-statements) to hard delete this raw from the table and check if the return of this methode to check if the delete was passed successfully and we retrun back to the previous route with session message
+
   ```bash
-    //function for reject a form
-    public function rejectForm($id){
-
-        $form = Form::find($id);
-        $form->update([
-            'is_confirmed' => 0
-        ]);
-
+    // hard delete a form
+    public function deleteForm($id){
+        //Select raw from form table by id and hard delete it
+        $form = Form::find($id)->delete();
         if($form){
-            Mail::to($form->email)->send(new FormMail('Rejected'));
-            session()->flash('status','the form was rejected successfully');
+            session()->flash('status','the form was deleted successfully');
             return back();
         }
             session()->flash('status','something went wrong');
             return back();
     }
 ```
-- delete function
-same as the Accept and reject methods we select the raw by primery key[id] from the form table and we use a laravel function called [delete()](https://laravel.com/docs/9.x/queries#delete-statements) to hard delete this raw from the table and check if the return of this methode to check if the delete was passed successfully and we retrun back to the previous route with session message
-
