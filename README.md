@@ -152,7 +152,7 @@ Route::middleware(['auth'])->group(function () {
 ```
 ![alt text](https://github.com/mohamedelazzouzi1997/formtask/blob/main/public/images/dashboard.png?raw=true)
 
-- First Chart 
+#### First Chart 
 this chart display count of submited form per day.  
 for fetching this data from the database we use [laravel eloquent](https://laravel.com/docs/9.x/eloquent), Laravel Eloquent, an object-relational mapper (ORM) that makes it enjoyable to interact with your database.
 ```bash
@@ -161,7 +161,7 @@ $chartData = Form::selectRaw('DATE(created_at) as created, COUNT(*) as created_c
         ->where('created_at', '>', Carbon::now()->subYear())
         ->get();
 ```
-- second Chart 
+#### second Chart 
 this chart display count of Referral by social media.
 ```bash
 $chartReferal=  Form::select('referal')
@@ -170,7 +170,7 @@ $chartReferal=  Form::select('referal')
         ->groupBy('referal')
         ->get();
 ```
-- Chart form Filter
+#### Chart form Filter
 on top of the first chart we have a form to filter chart data between two date  
  ```bash
 
