@@ -20,11 +20,13 @@ class adminController extends Controller
 
         $Form_Data = Form::latest()->paginate(5); //table data
 
-        $Filter_Date_From = $request->date_start ?? Carbon::now();
-        $Filter_Date_To = $request->date_end ?? Carbon::now();
-
         //checking if the filter form is submited
+
         if($request->has('date_start') || $request->has('date_end')){
+
+            $Filter_Date_From = $request->date_start ?? Carbon::now();
+            $Filter_Date_To = $request->date_end ?? Carbon::now();
+
             //select colume created_at between two date from the form table
             $chartData = Form::selectRaw('DATE(created_at) as created, COUNT(*) as created_count') // chart data
                     ->groupBy('created')
