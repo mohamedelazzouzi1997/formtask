@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Form;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,10 +14,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::create([
-            'name' => 'ecdtest admin',
-            'email' => 'test@test.com',
-            'password' => \bcrypt('123456789'),
+        Form::create([
+            'firstName' => $this->faker->name(),
+            'lastName' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'dateOfBirth' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
+            'phone' => $this->faker->e164PhoneNumber(),
+            'country' => $this->faker->country(),
+            'city' => $this->faker->city(),
+            'referal' => $this->faker->unique()->safeEmail(),
         ]);
     }
 }
