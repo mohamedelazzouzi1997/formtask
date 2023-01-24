@@ -22,7 +22,7 @@ class FormFactory extends Factory
                 'country' => $this->faker->country(),
                 'city' => $this->faker->city(),
                 'referal' => $this->faker->randomElement($array = array ('Instagrame','Facebook','Twitter')),
-                'created_at' => $this->faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now', $timezone = null),
+                'created_at' => $this->faker->dateTimeBetween($startDate = '-6 months', $endDate = 'now', $timezone = null),
                 'is_confirmed' => 0,
         ];
     }

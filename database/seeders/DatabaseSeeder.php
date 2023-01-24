@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
             Form::factory()
-            ->count(50)
+            ->count(100)
             ->create();
     }
 }
