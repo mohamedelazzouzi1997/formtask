@@ -127,3 +127,66 @@ then displaying the status message stored in the browser session
 ```
 ![alt text](https://github.com/mohamedelazzouzi1997/formtask/blob/main/public/images/formsuccess.png?raw=true)
 
+### admin dashboard
+in the admin dashboard we display all the submitted data with 2 charts and simple table
+![alt text](https://github.com/mohamedelazzouzi1997/formtask/blob/main/public/images/dashboard.png?raw=true)
+
+- First Chart 
+this chart display count of submited form per day.  
+for fetching this data from the database we use [laravel eloquent](https://laravel.com/docs/9.x/eloquent), Laravel Eloquent, an object-relational mapper (ORM) that makes it enjoyable to interact with your database.
+```bash
+$chartData = Form::selectRaw('DATE(created_at) as created, COUNT(*) as created_count') // chart data
+        ->groupBy('created')
+        ->where('created_at', '>', Carbon::now()->subYear())
+        ->get();
+```
+- second Chart 
+this chart display count of Referral by social media.
+```bash
+$chartReferal=  Form::select('referal')
+        ->selectRaw('count(referal) as counts')
+        ->where('created_at', '>', Carbon::now()->subYear())
+        ->groupBy('referal')
+        ->get();
+```
+- Chart form Filter
+on top of the first chart we have a form to filter chart data between two date  
+ ```bash
+
+//checking if the filter form is submited
+if($request->has('date_start') || $request->has('date_end')){
+
+    $Filter_Date_From = $request->date_start ?? Carbon::now();
+    $Filter_Date_To = $request->date_end ?? Carbon::now();
+
+    //select colume created_at between two date from the form table
+    $chartData = Form::selectRaw('DATE(created_at) as created, COUNT(*) as created_count') // chart data
+            ->groupBy('created')
+            ->whereDate('created_at', '>=', $Filter_Date_From)
+            ->whereDate('created_at', '<=', $Filter_Date_To)
+            ->get();
+
+    //select colume referal between two date from the form table
+    $chartReferal=  Form::select('referal')
+            ->selectRaw('count(referal) as counts')
+            ->whereDate('created_at', '>=', $Filter_Date_From)
+            ->whereDate('created_at', '<=', $Filter_Date_To)
+            ->groupBy('referal')
+            ->get();
+
+}
+```
+for that we check if the filter form was submitted then we store filter form data in two variable  
+[$Filter_Date_From,  $Filter_Date_To] and we use the [laravel Query Builder whereDate](https://laravel.com/docs/9.x/queries#where-clauses) to filter data between two different date for both charts
+
+
+
+- Simple data table 
+for this table we use basic Query builder to fetch latest submited forms and paginate them with [laravel Paginating Query Builder](https://laravel.com/docs/9.x/pagination#paginating-query-builder-results)
+  ```bash
+     $Form_Data = Form::latest()->paginate(5); //table data
+```
+and in the blade to display pagination we need to add
+  ```bash
+     {{ $Form_Data->links() }}
+```
