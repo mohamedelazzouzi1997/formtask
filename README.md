@@ -38,3 +38,4 @@
 ```bash
   php artisan migrate
 ```
+![alt text](https://github.com/mohamedelazzouzi1997/formtask/blob/main/public/images/dashboard.png?raw=true)
