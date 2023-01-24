@@ -69,9 +69,60 @@ Url Example: [http://myproject.test/form?referral=Fabebook]
 </div>
 ```
 ### Form Page
-![alt text](https://github.com/mohamedelazzouzi1997/formtask/blob/main/public/images/page1.png?raw=true)
+![alt text](https://github.com/mohamedelazzouzi1997/formtask/blob/main/public/images/formpage.png?raw=true)
 
 in this page we have a links for admin login / registration page and referral links page.  
 and we have a form for submiting some data.
 
-- Additional browser support
+- Form Validation
+for validation we using a laravel function called [Validate](https://laravel.com/docs/9.x/fortify)  
+```bash
+        $all = $request->validate([
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'email' => 'required|email',
+            'dateOfBirth' => 'required',
+            'phone' => 'numeric|required',
+            'country' => 'required',
+            'city' => 'required',
+            'referal' => 'required',
+        ]);
+```
+for displaying validation errors Laravel provide An $errors variable is shared with all of your application's views by.
+```bash
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+```
+![alt text](https://github.com/mohamedelazzouzi1997/formtask/blob/main/public/images/formvalidation.png?raw=true)
+
+then if the validation passed successfully we store data in database for  that we use methode called [Create](https://laravel.com/docs/9.x/eloquent-relationships#the-create-method)
+```bash
+    $form = Form::Create($all);
+```
+we store the return value from create method into a variable to check if the data stored successfully
+
+```bash
+    if($form){
+        session()->flash('status','form submited successfully');
+        return back();
+    }else{
+        session()->flash('status','something went wrong');
+        return back();
+    }
+```
+then displaying the status message stored in the browser session
+```bash
+    @if (Session::has('status'))
+    <div class="alert alert-success" role="alert">
+        {{ Session::get('status') }}
+    </div>
+    @endif
+```
+
