@@ -50,8 +50,8 @@ Laravel Fortify is a frontend agnostic authentication backend implementation for
 for the charts i user a laravel Package Called [Laravel Charts](https://charts.erik.cat/).  
 Laravel Charts is a charting library for laravel  Supported  multiple javascript libraries like [ChartsJs, Highcharts, Fusioncharts...]
 
-### 2. Mail trap
-i used [Mail trap](https://mailtrap.io) for testing mail services .  
+### 3. Mail trap
+[Mail trap](https://mailtrap.io) for testing mail services .  
 
 
 # Project Usage and How it work
@@ -80,7 +80,7 @@ Url Example: [http://myproject.test/form?referral=Fabebook]
 in this page we have a links for admin login / registration page and referral links page.  
 and we have a form for submiting some data.
 
-- Form Validation
+#### Form Validation
 for validation we using a laravel function called [Validate](https://laravel.com/docs/9.x/fortify)  
 ```bash
         $all = $request->validate([
