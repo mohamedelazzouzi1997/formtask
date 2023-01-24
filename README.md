@@ -1,4 +1,6 @@
 
+# Visuals
+![alt text](https://github.com/mohamedelazzouzi1997/formtask/blob/main/public/images/dashboard.png?raw=true)
 # Installation
 
 ### 1. Clone GitHub repo for this project locally
@@ -38,4 +40,10 @@
 ```bash
   php artisan migrate
 ```
-![alt text](https://github.com/mohamedelazzouzi1997/formtask/blob/main/public/images/dashboard.png?raw=true)
+# Packages and libraries used in the project
+### 1. login and registration
+for the admin login and registration i used [Laravel Fortify](https://laravel.com/docs/9.x/fortify).
+Laravel Fortify is a frontend agnostic authentication backend implementation for Laravel. Fortify registers the routes and controllers needed to implement all of Laravel's authentication features, including login, registration, password reset, email verification, and more. 
+### 2. Charts
+for the charts i user a laravel Package Called [Laravel Charts](https://charts.erik.cat/).  
+Laravel Charts is a charting library for laravel  Supported  multiple javascript libraries like [ChartsJs, Highcharts, Fusioncharts...]
