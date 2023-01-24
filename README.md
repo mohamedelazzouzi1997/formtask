@@ -213,7 +213,7 @@ and in the blade to display pagination we need to add
 ```
 in the table we have a colume called action containe three buttons [Accept, Reject, Delete] with thee function for manage the submitted forms.
 
-- function Accept
+#### function Accept
 for this function when admin click on the button [accept] a url with id of the form as parameter will be triggered 
   ```bash
     <form class="d-inline" action="{{ route('form.accept',$data->id) }}" method="post">
@@ -272,7 +272,7 @@ we create a session message called [status] to display it in the view the update
         session()->flash('status','the form was accepted successfully');
         return back();
 ```
-- function Reject
+#### function Reject
 this function like the accepte function we just updating [is_confirmed] colume to 0.  
 and we send mail with message (Rejected)
   ```bash
