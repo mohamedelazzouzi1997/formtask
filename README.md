@@ -47,3 +47,31 @@ Laravel Fortify is a frontend agnostic authentication backend implementation for
 ### 2. Charts
 for the charts i user a laravel Package Called [Laravel Charts](https://charts.erik.cat/).  
 Laravel Charts is a charting library for laravel  Supported  multiple javascript libraries like [ChartsJs, Highcharts, Fusioncharts...]
+
+# Project Usage and How it work
+
+### Links Page
+  
+![alt text](https://github.com/mohamedelazzouzi1997/formtask/blob/main/public/images/page1.png?raw=true)
+
+in this page we have three links with referral [twitter , facebook , instagram] heading to the form page  
+with Query parameters [referral as key] and [social media name as value]  
+Url Example: [http://myproject.test/form?referral=Fabebook]
+```bash
+<div class="container">
+    <div class="row mx-auto my-5 justify-content-center">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <a class="btn btn-primary " href="{{ url('/form?referral=Fabebook') }}">Fabebook</a>
+                <a class="btn btn-danger" href="{{ url('/form?referral=Instagrame') }}">Instagrame</a>
+                <a class="btn btn-warning" href="{{ url('/form?referral=Twitter') }}">Twitter</a>
+        </div>
+    </div>
+</div>
+```
+### Form Page
+![alt text](https://github.com/mohamedelazzouzi1997/formtask/blob/main/public/images/page1.png?raw=true)
+
+in this page we have a links for admin login / registration page and referral links page.  
+and we have a form for submiting some data.
+
+- Additional browser support
