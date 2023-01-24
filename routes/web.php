@@ -14,8 +14,8 @@ use App\Http\Controllers\adminController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/',[formController::class,'links'])->name('links');
+Route::redirect('/', 'links', 301);
+Route::get('/links',[formController::class,'links'])->name('links');
 Route::get('form',[formController::class,'index'])->name('form');
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [adminController::class,'index'])->name('home');
