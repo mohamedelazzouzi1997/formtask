@@ -97,7 +97,7 @@ class adminController extends Controller
         ]);
 
         if($form){
-            Mail::to($form->email)->send(new FormMail('Rejected'));
+            Mail::to($form->email)->send(new FormMail('Accepted'));
             session()->flash('status','the form was accepted successfully');
             return back();
         }

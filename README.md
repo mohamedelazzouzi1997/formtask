@@ -48,6 +48,10 @@ Laravel Fortify is a frontend agnostic authentication backend implementation for
 for the charts i user a laravel Package Called [Laravel Charts](https://charts.erik.cat/).  
 Laravel Charts is a charting library for laravel  Supported  multiple javascript libraries like [ChartsJs, Highcharts, Fusioncharts...]
 
+### 2. Mail trap
+i used [Mail trap](https://mailtrap.io) for testing mail services .  
+
+
 # Project Usage and How it work
 
 ### Links Page
@@ -129,6 +133,21 @@ then displaying the status message stored in the browser session
 
 ### admin dashboard
 in the admin dashboard we display all the submitted data with 2 charts and simple table
+
+for admine dashboard we using group of routes with [ Middleware](https://laravel.com/docs/9.x/middleware#main-content).  
+Middleware provide a convenient mechanism for inspecting and filtering HTTP requests entering your application. For example, Laravel includes a middleware that verifies the user of your application is authenticated. If the user is not authenticated, the middleware will redirect the user to your application's login screen.
+```bash
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [adminController::class,'index'])->name('home');
+    Route::get('/home/filter',[adminController::class,'index'])->name('filter');
+
+
+    Route::post('/home/form/reject/{id}',[adminController::class,'rejectForm'])->name('form.reject');
+    Route::post('/home/form/accept/{id}',[adminController::class,'acceptForm'])->name('form.accept');
+    Route::get('/home/form/delete/{id}',[adminController::class,'deleteForm'])->name('form.delete');
+
+});
+```
 ![alt text](https://github.com/mohamedelazzouzi1997/formtask/blob/main/public/images/dashboard.png?raw=true)
 
 - First Chart 
@@ -189,4 +208,102 @@ for this table we use basic Query builder to fetch latest submited forms and pag
 and in the blade to display pagination we need to add
   ```bash
      {{ $Form_Data->links() }}
+```
+in the table we have a colume called action containe three buttons [Accept, Reject, Delete] with thee function for manage the submitted forms.
+
+- function Accept
+for this function when admin click on the button [accept] a url with id of the form as parameter will be triggered 
+  ```bash
+    <form class="d-inline" action="{{ route('form.accept',$data->id) }}" method="post">
+        @csrf
+        <button type="submit" class="btn btn-success">Accept <i class="fa-solid fa-check"></i></button>
+    </form>
+```
+for the route in the web.php
+  ```bash
+    Route::post('/home/form/accept/{id}',[adminController::class,'acceptForm'])->name('form.accept');
+```
+
+this route call a function in the adminController called [acceptForm]
+  ```bash
+    public function acceptForm($id){
+
+        $form = Form::find($id);
+        $form->update([
+           'is_confirmed' => 1
+        ]);
+
+        if($form){
+            Mail::to($form->email)->send(new FormMail('Rejected'));
+            session()->flash('status','the form was accepted successfully');
+            return back();
+        }
+            session()->flash('status','something went wrong');
+            return back();
+    }
+```
+then we select the raw from the form table in database with primary key [id].  
+now we can update the colume [is_confirmed]
+  ```bash
+      $form->update([
+         'is_confirmed' => 1
+      ]);
+```
+then we check if the update passed successfully by cheking the return of the method update
+  ```bash
+      if($form){
+          Mail::to($form->email)->send(new FormMail('accepted'));
+          session()->flash('status','the form was accepted successfully');
+          return back();
+      }
+          session()->flash('status','something went wrong');
+          return back();
+```
+then we send an email to the address email of this selected form with message (Accepted)
+
+  ```bash
+        Mail::to($form->email)->send(new FormMail('accepted'));
+```
+
+we create a session message called [status] to display it in the view the update passed successfully and return to the previous route with the function [back()]
+  ```bash
+        session()->flash('status','the form was accepted successfully');
+        return back();
+```
+- function Reject
+this function like the accepte function we just updating [is_confirmed] colume to 0.  
+and we send mail with message (Rejected)
+  ```bash
+    //function for reject a form
+    public function rejectForm($id){
+
+        $form = Form::find($id);
+        $form->update([
+            'is_confirmed' => 0
+        ]);
+
+        if($form){
+            Mail::to($form->email)->send(new FormMail('Rejected'));
+            session()->flash('status','the form was rejected successfully');
+            return back();
+        }
+            session()->flash('status','something went wrong');
+            return back();
+    }
+```
+
+- delete function
+same as the Accept and reject methods we select the raw by primery key[id] from the form table and we use a laravel function called [delete()](https://laravel.com/docs/9.x/queries#delete-statements) to hard delete this raw from the table and check if the return of this methode to check if the delete was passed successfully and we retrun back to the previous route with session message
+  ```bash
+    // hard delete a form
+    public function deleteForm($id){
+        //Select raw from form table by id and hard delete it
+        $form = Form::find($id)->delete();
+        if($form){
+            session()->flash('status','the form was deleted successfully');
+            return back();
+        }
+            session()->flash('status','something went wrong');
+            return back();
+    }
 ```
