@@ -79,7 +79,6 @@
               <td>{{ $data->phone }}</td>
               <td>{{ $data->country }}</td>
               <td>{{ $data->city }}</td>
-              <td>{{ $data->firstName }}</td>
               <td>{{ $data->referal }}</td>
               <td>
                 @if ($data->is_confirmed)
