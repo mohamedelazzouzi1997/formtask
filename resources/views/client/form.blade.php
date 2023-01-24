@@ -15,7 +15,7 @@
         <div class="mx-auto my-5">
             <a class="btn btn-primary mx-2" href="{{ url('login') }}">admin login</a>
             <a class="btn btn-primary mx-2" href="{{ url('register') }}">admin register</a>
-            <a class="btn btn-primary mx-2" href="{{ url('links') }}">Referral Links For test</a>
+            <a class="btn btn-primary mx-2" href="{{ url('/') }}">Referral Links For test</a>
         </div>
 @if ($errors->any())
     <div class="alert alert-danger">

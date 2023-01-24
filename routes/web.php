@@ -15,7 +15,7 @@ use App\Http\Controllers\adminController;
 |
 */
 
-Route::get('/links',[formController::class,'links'])->name('links');
+Route::get('/',[formController::class,'links'])->name('links');
 Route::get('form',[formController::class,'index'])->name('form');
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [adminController::class,'index'])->name('home');
@@ -29,4 +29,3 @@ Route::middleware(['auth'])->group(function () {
 
 });
 Route::post('form/store',[formController::class,'store'])->name('send.form');
-
