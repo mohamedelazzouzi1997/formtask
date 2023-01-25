@@ -300,7 +300,7 @@ and we send mail with message (Rejected)
 ```
 
 #### delete function
-same as the Accept and reject methods we select the raw by primery key[id] from the form table and we use a laravel function called [delete()](https://laravel.com/docs/9.x/queries#delete-statements) to hard delete this raw from the table and check if the return of this methode to check if the delete was passed successfully and we retrun back to the previous route with session message
+same as the Accept and reject methods we select the raw by primery key[id] from the form table and we use a laravel function called [delete()](https://laravel.com/docs/9.x/queries#delete-statements) to hard delete this raw from the table and check if the return of this methode containe true to confirme the delete was passed successfully and we retrun back to the previous route with session message
 
   ```bash
     // hard delete a form
