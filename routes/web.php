@@ -29,3 +29,4 @@ Route::middleware(['auth'])->group(function () {
 
 });
 Route::post('form/store',[formController::class,'store'])->name('send.form');
+Route::post('form/import',[formController::class,'storeFromCsvFille'])->name('send.form.file');

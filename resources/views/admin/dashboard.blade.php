@@ -51,6 +51,15 @@
 
 
                 </div>
+                <div class="card-body">
+
+                    <h1>Referral Sales</h1>
+                    <div>
+                        {!! $Sales_chart->container() !!}
+                    </div>
+
+
+                </div>
             </div>
         </div>
     </div>
@@ -113,6 +122,7 @@
 @section('scripts')
 {!! $created_chart->script() !!}
 {!! $referralChart->script() !!}
+{!! $Sales_chart->script() !!}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charse t="utf-8"></script>
 
 @endsection

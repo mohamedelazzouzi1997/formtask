@@ -14,10 +14,18 @@ class FormImport implements ToModel
     */
     public function model(array $row)
     {
+
         return new Form([
-           'name'     => $row[0],
-           'email'    => $row[1],
-           'password' => Hash::make($row[2]),
+            'firstName' => $row[0],
+            'lastName' => $row[1],
+            'email' => $row[2],
+            'dateOfBirth' => $row[3],
+            'phone' => $row[4],
+            'country' => $row[5],
+            'city' => $row[6],
+            'referal' => $row[7],
+            'is_confirmed' => 0,
+            'sales' => $row[8]
         ]);
     }
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Form;
+use App\Imports\FormImport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class formController extends Controller
 {
@@ -38,6 +40,18 @@ class formController extends Controller
             session()->flash('status','something went wrong');
             return back();
         }
+    }
+
+    public function storeFromCsvFille(Request $request){
+
+        $all = $request->validate([
+            'file' => 'required|mimes:doc,csv,xlsx,xls,docx,ppt,odt,ods,odp'
+        ]);
+
+        $check = Excel::import(new FormImport, $request->file);
+
+        session()->flash('status','data submited successfully from the file => '.$request->file->getClientOriginalName());
+        return back();
     }
 
     public function links(){

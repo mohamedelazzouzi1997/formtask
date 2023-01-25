@@ -42,6 +42,12 @@ class adminController extends Controller
                     ->groupBy('referal')
                     ->get();
 
+            $File_Data_Chart=  Form::selectRaw('sum(sales) as sales_Count,referal as origin')
+                    ->whereDate('created_at', '>=', $Filter_Date_From)
+                    ->whereDate('created_at', '<=', $Filter_Date_To)
+                    ->groupBy('referal')
+                    ->get();
+
         }else{
             //select colume created_at from the form table
             $chartData = Form::selectRaw('DATE(created_at) as created, COUNT(*) as created_count') // chart data
@@ -55,8 +61,13 @@ class adminController extends Controller
                     ->where('created_at', '>', Carbon::now()->subYear())
                     ->groupBy('referal')
                     ->get();
-        }
 
+            $File_Data_Chart=  Form::selectRaw('sum(sales) as sales_Count ,referal as origin')
+                    ->where('created_at', '>', Carbon::now()->subYear())
+                    ->groupBy('referal')
+                    ->get();
+        }
+        // dd($File_Data_Chart);
         //create new chart for submited form by created_at
         $created_chart = new FormChart;
         $created_chart->labels($chartData->pluck('created'));
@@ -67,7 +78,11 @@ class adminController extends Controller
         $referralChart->labels($chartReferal->pluck('referal'));
         $referralChart->dataset('Referral Links', 'bar', $chartReferal->pluck('counts'))->backgroundColor('rgba(5,250,240,.5)');
 
-        return view('admin.dashboard',compact('Form_Data','created_chart','referralChart'));
+        //create new chart for Referral sales
+        $Sales_chart = new FormChart;
+        $Sales_chart->labels($File_Data_Chart->pluck('origin'));
+        $Sales_chart->dataset('Referral Sales', 'bar', $File_Data_Chart->pluck('sales_Count'))->backgroundColor('rgba(5,20,240,.5)');
+        return view('admin.dashboard',compact('Form_Data','created_chart','referralChart','Sales_chart'));
     }
 
     //function for reject a form

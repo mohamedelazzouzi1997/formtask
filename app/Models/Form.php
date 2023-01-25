@@ -17,6 +17,7 @@ class Form extends Model
         'country',
         'city',
         'referal',
-        'is_confirmed'
+        'is_confirmed',
+        'sales'
     ];
 }
