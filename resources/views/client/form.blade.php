@@ -31,7 +31,18 @@
             {{ Session::get('status') }}
         </div>
         @endif
-        <form action="{{ route('send.form') }}" method="post" class="bg-secondary p-3">
+        <form action="{{ route('send.form') }}" method="post" class="bg-secondary p-3 mb-5">
+            @csrf
+            <input type="hidden" name="referal" value="{{ $Referral_Link }}">
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="lastName">csv file data</label>
+              <input type="file" class="form-control" name="csv"  placeholder="csv">
+            </div>
+          <button type="submit" class="btn btn-primary btn-block my-3">Send</button>
+        </form>
+    </div>
+        <form action="{{ route('send.form') }}" method="post" class="bg-secondary mt-5 p-3">
             @csrf
             <input type="hidden" name="referal" value="{{ $Referral_Link }}">
           <div class="form-row">
@@ -70,7 +81,6 @@
           </div>
           <button type="submit" class="btn btn-primary btn-block my-3">Send</button>
         </form>
-    </div>
 </div>
 @endsection
 
