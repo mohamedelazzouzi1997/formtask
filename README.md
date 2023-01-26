@@ -192,7 +192,7 @@ class FormImport implements ToModel,WithHeadingRow
 
 }
 ```
-then we add WithHeadingRow for to use names as array key to store data.  
+then we add WithHeadingRow to use names as array key to store data.  
 and in the controller of this route we call import methode.
 ```bash
     public function storeFromCsvFille(Request $request){
