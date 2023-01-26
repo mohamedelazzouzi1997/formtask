@@ -49,9 +49,9 @@ class formController extends Controller
             'file_data' => 'required'
         ]);
 
-        $check = Excel::import(new FormImport, $request->file);
+        $check = Excel::import(new FormImport, $request->file_data);
 
-        session()->flash('status','data submited successfully from the file => '.$request->file->getClientOriginalName());
+        session()->flash('status','data submited successfully from the file => '.$request->file_data->getClientOriginalName());
         return back();
     }
 
