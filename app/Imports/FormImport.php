@@ -27,7 +27,8 @@ class FormImport implements ToModel,WithHeadingRow
             'city' => $row['city'],
             'referal' => $row['referal'],
             'is_confirmed' => 0,
-            'sales' => $row['sales']
+            'sales' => $row['sales'],
+            'created_at' => $row['created_at']
         ]);
         if($form)
             return $form;

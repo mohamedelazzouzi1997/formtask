@@ -18,6 +18,7 @@ class Form extends Model
         'city',
         'referal',
         'is_confirmed',
-        'sales'
+        'sales',
+        'created_at'
     ];
 }
