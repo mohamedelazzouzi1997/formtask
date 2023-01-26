@@ -5,7 +5,7 @@ namespace App\Imports;
 use App\Models\Form;
 use Maatwebsite\Excel\Concerns\ToModel;
 
-class FormImport implements ToModel
+class FormImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -16,16 +16,16 @@ class FormImport implements ToModel
     {
 
         return new Form([
-            'firstName' => $row[0],
-            'lastName' => $row[1],
-            'email' => $row[2],
-            'dateOfBirth' => $row[3],
-            'phone' => $row[4],
-            'country' => $row[5],
-            'city' => $row[6],
-            'referal' => $row[7],
+            'firstName' => $row['firstName'],
+            'lastName' => $row['lastName'],
+            'email' => $row['email'],
+            'dateOfBirth' => $row['dateOfBirth'],
+            'phone' => $row['phone'],
+            'country' => $row['country'],
+            'city' => $row['city'],
+            'referal' => $row['referal'],
             'is_confirmed' => 0,
-            'sales' => $row[8]
+            'sales' => $row['sales']
         ]);
     }
 }
