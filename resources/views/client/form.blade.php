@@ -34,8 +34,8 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="lastName">csv file data</label>
-                        <input type="file" class="form-control" name="file" placeholder="csv">
-                    </div>
+                        <input type="file" class="form-control" name="file_data" placeholder="csv">
+                </div>
                     <button type="submit" class="btn btn-primary btn-block my-3">Send</button>
             </form>
         </div>

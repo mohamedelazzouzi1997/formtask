@@ -4,9 +4,11 @@ namespace App\Imports;
 
 use App\Models\Form;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class FormImport implements ToModel, WithHeadingRow
+class FormImport implements ToModel,WithHeadingRow
 {
+
     /**
     * @param array $row
     *
@@ -14,12 +16,12 @@ class FormImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-
-        return new Form([
-            'firstName' => $row['firstName'],
-            'lastName' => $row['lastName'],
+        // dd($row);
+        $form = new Form([
+            'firstName' => $row['firstname'],
+            'lastName' => $row['lastname'],
             'email' => $row['email'],
-            'dateOfBirth' => $row['dateOfBirth'],
+            'dateOfBirth' => $row['dateofbirth'],
             'phone' => $row['phone'],
             'country' => $row['country'],
             'city' => $row['city'],
@@ -27,5 +29,13 @@ class FormImport implements ToModel, WithHeadingRow
             'is_confirmed' => 0,
             'sales' => $row['sales']
         ]);
+        if($form)
+            return $form;
+
+        return back()->with([
+            'status' => 'something went wrong'
+        ]);
     }
+
+
 }

@@ -44,8 +44,9 @@ class formController extends Controller
 
     public function storeFromCsvFille(Request $request){
 
-        $all = $request->validate([
-            'file' => 'required|mimes:doc,csv,xlsx,xls,docx,ppt,odt,ods,odp'
+        // dd($request->file->getClientOriginalName());
+        $request->validate([
+            'file_data' => 'required'
         ]);
 
         $check = Excel::import(new FormImport, $request->file);
