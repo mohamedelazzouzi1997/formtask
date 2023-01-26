@@ -145,7 +145,7 @@ then displaying the status message stored in the browser session
 to store data from excel file we using [Laravel excel](https://laravel-excel.com/) package.  
 first step we need to create an import class with model that you want to store data for.  
 ```bash
-php artisan make:import FormImport --model=User
+php artisan make:import FormImport --model=Form
 ```
 then in app/Imports you will find you file created
 ```bash
