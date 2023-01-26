@@ -84,7 +84,7 @@ Url Example: [http://myproject.test/form?referral=Fabebook]
 ### Form Page
 ![alt text](https://github.com/mohamedelazzouzi1997/formtask/blob/main/public/images/formpage.png?raw=true)
 
-![alt text](https://github.com/mohamedelazzouzi1997/formtask/blob/main/public/images/formfile.png?raw=true)
+
 
 in this page we have a links for admin login / registration page and referral links page.  
 and we have a form for submiting some data and an input file to submit data from an excel file.
@@ -142,6 +142,7 @@ then displaying the status message stored in the browser session
 ```
 ![alt text](https://github.com/mohamedelazzouzi1997/formtask/blob/main/public/images/formsuccess.png?raw=true)
 #### Form file 
+![alt text](https://github.com/mohamedelazzouzi1997/formtask/blob/main/public/images/formfile.png?raw=true)
 to store data from excel file we using [Laravel excel](https://laravel-excel.com/) package.  
 first step we need to create an import class with model that you want to store data for.  
 ```bash
