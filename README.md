@@ -289,7 +289,7 @@ for that we check if the filter form was submitted then we store filter form dat
 
 
 #### Simple data table 
-for this table we use basic Query builder to fetch latest submited forms and paginate them with [laravel Paginating Query Builder](https://laravel.com/docs/9.x/pagination#paginating-query-builder-results)
+for this table we use basic Query builder to fetch latest submited forms and paginate this data with [laravel Paginating Query Builder](https://laravel.com/docs/9.x/pagination#paginating-query-builder-results)
   ```bash
      $Form_Data = Form::latest()->paginate(5); //table data
 ```
