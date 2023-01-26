@@ -58,6 +58,8 @@ Laravel Charts is a charting library for laravel  Supported  multiple javascript
 ### 3. Mail trap
 [Mail trap](https://mailtrap.io) for testing mail services .  
 
+### 4. Laravel excel
+[Laravel excel](https://laravel-excel.com/) for Importing data from an excel file to database . 
 
 # Project Usage and How it work
 
@@ -82,8 +84,10 @@ Url Example: [http://myproject.test/form?referral=Fabebook]
 ### Form Page
 ![alt text](https://github.com/mohamedelazzouzi1997/formtask/blob/main/public/images/formpage.png?raw=true)
 
+![alt text](https://github.com/mohamedelazzouzi1997/formtask/blob/main/public/images/formfile.png?raw=true)
+
 in this page we have a links for admin login / registration page and referral links page.  
-and we have a form for submiting some data.
+and we have a form for submiting some data and an input file to submit data from an excel file.
 
 #### Form Validation
 for validation we using a laravel function called [Validate](https://laravel.com/docs/9.x/fortify)  
@@ -137,6 +141,72 @@ then displaying the status message stored in the browser session
     @endif
 ```
 ![alt text](https://github.com/mohamedelazzouzi1997/formtask/blob/main/public/images/formsuccess.png?raw=true)
+#### Form file 
+to store data from excel file we using [Laravel excel](https://laravel-excel.com/) package.  
+first step we need to create an import class with model that you want to store data for.  
+```bash
+php artisan make:import FormImport --model=User
+```
+then in app/Imports you will find you file created
+```bash
+<?php
+
+namespace App\Imports;
+
+use App\Models\Form;
+use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+
+class FormImport implements ToModel,WithHeadingRow
+{
+
+    /**
+    * @param array $row
+    *
+    * @return \Illuminate\Database\Eloquent\Model|null
+    */
+    public function model(array $row)
+    {
+        // dd($row);
+        $form = new Form([
+            'firstName' => $row['firstname'],
+            'lastName' => $row['lastname'],
+            'email' => $row['email'],
+            'dateOfBirth' => $row['dateofbirth'],
+            'phone' => $row['phone'],
+            'country' => $row['country'],
+            'city' => $row['city'],
+            'referal' => $row['referal'],
+            'is_confirmed' => 0,
+            'sales' => $row['sales'],
+            'created_at' => $row['created_at']
+        ]);
+        if($form)
+            return $form;
+
+        return back()->with([
+            'status' => 'something went wrong'
+        ]);
+    }
+
+
+}
+```
+then we add WithHeadingRow for to use names as array key to store data.  
+and in the controller of this route we call import methode.
+```bash
+    public function storeFromCsvFille(Request $request){
+
+        $request->validate([
+            'file_data' => 'required'
+        ]);
+
+        $check = Excel::import(new FormImport, $request->file_data);
+
+        session()->flash('status','data submited successfully from the file => '.$request->file_data->getClientOriginalName());
+        return back();
+    }
+```
 
 ### admin dashboard
 in the admin dashboard we display all the submitted data with 2 charts and simple table
@@ -172,6 +242,16 @@ this chart display count of Referral by social media.
 $chartReferal=  Form::select('referal')
         ->selectRaw('count(referal) as counts')
         ->where('created_at', '>', Carbon::now()->subYear())
+        ->groupBy('referal')
+        ->get();
+```
+#### third Chart 
+this chart display count of sales by Origins.
+```bash
+$chartReferal=  Form::select('referal')
+$File_Data_Chart=  Form::selectRaw('sum(sales) as sales_Count,referal as origin')
+        ->whereDate('created_at', '>=', $Filter_Date_From)
+        ->whereDate('created_at', '<=', $Filter_Date_To)
         ->groupBy('referal')
         ->get();
 ```
