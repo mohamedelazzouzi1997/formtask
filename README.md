@@ -142,7 +142,7 @@ then displaying the status message stored in the browser session
 ```
 ![alt text](https://github.com/mohamedelazzouzi1997/formtask/blob/main/public/images/formsuccess.png?raw=true)
 #### Form file 
-![alt text](https://github.com/mohamedelazzouzi1997/formtask/blob/main/public/images/formfile.png?raw=true)
+![alt text](https://github.com/mohamedelazzouzi1997/formtask/blob/main/public/images/formfile.PNG?raw=true)
 to store data from excel file we using [Laravel excel](https://laravel-excel.com/) package.  
 first step we need to create an import class with model that you want to store data for.  
 ```bash
