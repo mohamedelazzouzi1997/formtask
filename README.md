@@ -230,7 +230,7 @@ Route::middleware(['auth'])->group(function () {
 
 #### First Chart 
 this chart display count of submited form per day.  
-for fetching this data from the database we use [laravel eloquent](https://laravel.com/docs/9.x/eloquent), Laravel Eloquent, an object-relational mapper (ORM) that makes it enjoyable to interact with your database.
+for fetching this data from the database we use [laravel eloquent](https://laravel.com/docs/9.x/eloquent),
 ```bash
 $chartData = Form::selectRaw('DATE(created_at) as created, COUNT(*) as created_count') // chart data
         ->groupBy('created')
