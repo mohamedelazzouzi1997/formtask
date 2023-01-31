@@ -230,7 +230,7 @@ Route::middleware(['auth'])->group(function () {
 
 #### First Chart 
 this chart display count of submited form per day.  
-for fetching this data from the database we use [laravel eloquent](https://laravel.com/docs/9.x/eloquent), Laravel Eloquent, an object-relational mapper (ORM) that makes it enjoyable to interact with your database.
+for fetching this data from the database we use [laravel eloquent](https://laravel.com/docs/9.x/eloquent),
 ```bash
 $chartData = Form::selectRaw('DATE(created_at) as created, COUNT(*) as created_count') // chart data
         ->groupBy('created')
@@ -289,7 +289,7 @@ for that we check if the filter form was submitted then we store filter form dat
 
 
 #### Simple data table 
-for this table we use basic Query builder to fetch latest submited forms and paginate them with [laravel Paginating Query Builder](https://laravel.com/docs/9.x/pagination#paginating-query-builder-results)
+for this table we use basic Query builder to fetch latest submited forms and paginate this data with [laravel Paginating Query Builder](https://laravel.com/docs/9.x/pagination#paginating-query-builder-results)
   ```bash
      $Form_Data = Form::latest()->paginate(5); //table data
 ```
