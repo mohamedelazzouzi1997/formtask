@@ -14,7 +14,12 @@ use App\Http\Controllers\adminController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::redirect('/', 'links', 301);
+Route::get('/',function(){
+    return view('client.home');
+});
+Route::get('/contact',function(){
+    return view('client.contact');
+});
 Route::get('/links',[formController::class,'links'])->name('links');
 Route::get('form',[formController::class,'index'])->name('form');
 Route::middleware(['auth'])->group(function () {
