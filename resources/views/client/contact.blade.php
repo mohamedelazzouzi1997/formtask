@@ -9,7 +9,7 @@
     <div class="absolute bottom-0 right-0 left-0 top-0 bg-black opacity-40">
 
     </div>
-    <div class=" text-white z-10 my-5">
+    <div data-aos="fade-down" class=" text-white z-10 my-5">
             <h1 class="text-2xl md:text-7xl uppercase text-center font-extrabold">un restaurant à expérience UNIque </h1>
             <p class="text-xl font-extrabold text-center"> l’ambiance feutrée de nos spectacles </p>
     </div>
@@ -21,11 +21,11 @@
     <div class="text-white text-center mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2">
             <div class="text-center space-y-10 md:text-2xl mb-5">
-                <div class="w-full md:block text-start"><i class="fa-solid fa-location-dot mr-5 text-orange-300"></i> Route des Jardins de la Palmeraie,Marrakech, Maroc</div>
-                <div class="w-full md:block text-start"><i class="fa-solid fa-at mr-5 text-orange-300"></i> booking@leblokk.com</div>
-                <div class="w-full md:block text-start"><i class="fa-solid fa-phone mr-5 text-orange-300"></i> +212 674 334 334</div>
+                <div data-aos="fade-right" class="w-full md:block text-start"><i class="fa-solid fa-location-dot mr-5 text-orange-300"></i> Route des Jardins de la Palmeraie,Marrakech, Maroc</div>
+                <div data-aos="fade-right" class="w-full md:block text-start"><i class="fa-solid fa-at mr-5 text-orange-300"></i> booking@leblokk.com</div>
+                <div data-aos="fade-right" class="w-full md:block text-start"><i class="fa-solid fa-phone mr-5 text-orange-300"></i> +212 674 334 334</div>
             </div>
-            <form action="" class="space-y-5">
+            <form data-aos="fade-down" action="" class="space-y-5">
                 <input placeholder="Votre Nom" class="bg-black w-full border border-orange-300 px-5 py-4 text-white" type="text">
                 <input placeholder="Nom D'agence ou D'établissement" class="bg-black w-full border border-orange-300 px-5 py-4 text-white" type="text">
                 <input placeholder="Votre E-mail" class="bg-black w-full border border-orange-300 px-5 py-4 text-white" type="text">

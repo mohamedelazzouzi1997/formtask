@@ -1,7 +1,7 @@
 	<header id="navtop" class="">
 		{{-- <div class="menu-container"> --}}
 			<div class="grt-menu-row items-center h-[100px]">
-				<div class="grt-menu-logo">
+				<div data-aos="fade-down" class="grt-menu-logo">
 					<a href="{{ url('/') }}" class="grt-logo"><img src="{{ asset('images/logo.png') }}"></a>
 				</div>
 				<div class="grt-menu-right">
