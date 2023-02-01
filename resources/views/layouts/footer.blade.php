@@ -1,5 +1,5 @@
 
-<footer class="px-5 md:px-32 bg-slate-300 py-5">
+<footer class="px-5 md:px-32 bg-orange-900 py-5">
     <div class="grid grid-cols-1 md:grid-cols-1">
         <div class="space-x-5 text-center ">
             <a href="#"><i class="fa-brands hover:text-orange-300 text-2xl fa-facebook"></i></a>

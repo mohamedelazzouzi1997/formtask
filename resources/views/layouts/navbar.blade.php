@@ -9,8 +9,8 @@
 				 <button class="grt-mobile-button"><span class="line1"></span><span class="line2"></span><span class="line3"></span></button>
 				 <ul class="grt-menu">
 				  <li class=""><a href="{{ url('/') }}">HOME</a></li>
-				  <li><a href="#about">ABOUT</a></li>
-				  <li><a href="#reservation">RESERVATION</a></li>
+				  <li><a href="{{ url('/#about') }}">ABOUT</a></li>
+				  <li><a href="{{ url('/#reservation') }}">RESERVATION</a></li>
 				<li><a href="{{ url('/contact') }}">CONTACT</a></li>
 				</ul>
 				</nav>
