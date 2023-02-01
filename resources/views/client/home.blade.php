@@ -16,7 +16,8 @@
     <div class=" text-white z-10 my-5">
         <div class="px-5 py-5 opacity-90 bg-black" >
             <form action="" class="z-20">
-                <h2 class="text-orange-300 font-extrabold text-5xl text-center italic fw-josef">RESERVATION</h2>
+                <h2 class="text-orange-300 font-extrabold text-5xl text-center italic fw-josef fw">RESERVATION</h2>
+
                 <div class="grid grid-cols-1 md:grid-cols-2 p-5 text-center gap-4">
                     <input class="px-3 py-3 bg-black border border-orange-300" placeholder="Nom Complet" type="text">
                     <input class="px-3 py-3 bg-black border border-orange-300" placeholder="Email" type="email">
@@ -58,7 +59,7 @@
         <div class="text-center">
             <h2  data-aos="fade-down" class="text-white text-center italic fw-dancing text-2xl">Taste the difference</h2>
             <h3 data-aos="fade-down"  class="text-orange-300 font-semibold text-5xl text-center fw-explora">RESERVATION</h3>
-            <img class="mx-auto mb-5 w-[50%]" src="{{ asset('images/line2.png') }}" alt="">
+            <img class="mx-auto mb-5 w-[50%] " src="{{ asset('images/line2.png') }}" alt="">
 
             <div class="grid grid-cols-1 md:grid-cols-2 items-center">
                 <img data-aos="fade-right" class="h-full rounded-full" src="{{ asset('images/image2.jpg') }}" class="" alt="image2">
