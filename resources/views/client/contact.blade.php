@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="px-5 flex bg-fixed justify-center items-center relative md:px-48 h-[400px] md:h-screen bg-cover bg-center " style="background-image: url('{{ asset('images/image5.jpg') }}')">
+<div id="topdiv" class="px-5 slide_photo flex bg-fixed bg-no-repeat justify-center items-center relative md:px-48 h-[400px] md:h-screen bg-cover bg-center " style="background-image: url('{{ asset('images/image5.jpg') }}')">
     <div class="absolute bottom-0 right-0 left-0 top-0 bg-black opacity-40">
 
     </div>
@@ -16,8 +16,8 @@
 </div>
 <div class="px-5 md:px-32 my-16">
 <div class="text-center">
-    <h2 class="uppercase text-5xl font-semibold text-orange-300">devenir notre partenaire</h2>
-    <img src="{{ asset('images/line.png') }}" class="mx-auto my-5" alt="">
+    <h2 class="uppercase text-5xl font-semibold fw-explora text-orange-300">devenir notre partenaire</h2>
+    <img src="{{ asset('images/line2.png') }}" class="mx-auto my-5 md:w-[60%] md:h-[70px]" alt="">
     <div class="text-white text-center mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2">
             <div class="text-center space-y-10 md:text-2xl mb-5">
@@ -41,5 +41,23 @@
 @endsection
 
 @section('scripts')
+<script>
+    window.onload = function () {
 
+    function changeImage() {
+        var BackgroundImg=[
+            "{{ asset('images/image1.png') }}",
+            "{{ asset('images/image4.png') }}",
+            "{{ asset('images/image5.jpg') }}",
+        ];
+        var i = Math.floor((Math.random() * 3));
+        var image = $('#topdiv');
+            image.fadeOut(1000, function () {
+                image.css("background-image", 'url("' + BackgroundImg[i] + '")');
+                image.fadeIn(1000);
+            });
+    }
+    window.setInterval(changeImage, 3000);
+}
+</script>
 @endsection

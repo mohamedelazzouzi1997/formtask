@@ -30,7 +30,7 @@
 
         @yield('content')
 
-        <button id="toTop" class="fixed rounded-full bottom-5 right-5 px-4 py-3 bg-orange-300 text-white"><i class="fa-solid fa-chevron-up"></i></button>
+        <button id="toTop" class="fixed z-30 rounded-full bottom-5 right-5 px-4 py-3 bg-orange-300 text-white"><i class="fa-solid fa-chevron-up"></i></button>
         @include('layouts.footer')
 
         {{-- <script defer src="https://code.jquery.com/jquery-3.6.3.slim.min.js" integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo=" crossorigin="anonymous"></script> --}}

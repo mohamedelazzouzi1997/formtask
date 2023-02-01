@@ -58,7 +58,8 @@
         <div class="text-center">
             <h2  data-aos="fade-down" class="text-white text-center italic fw-dancing text-2xl">Taste the difference</h2>
             <h3 data-aos="fade-down"  class="text-orange-300 font-semibold text-5xl text-center fw-explora">RESERVATION</h3>
-            <img class="mx-auto my-5 w-[70%]" src="{{ asset('images/line.png') }}" alt="">
+            <img class="mx-auto mb-5 w-[50%]" src="{{ asset('images/line2.png') }}" alt="">
+
             <div class="grid grid-cols-1 md:grid-cols-2 items-center">
                 <img data-aos="fade-right" class="h-full rounded-full" src="{{ asset('images/image2.jpg') }}" class="" alt="image2">
                 <div data-aos="fade-left" class="text-center">
@@ -72,7 +73,8 @@
         <div class="text-center">
             <h2 data-aos="fade-down" class="text-white text-center italic fw-dancing text-2xl">Composez votre assiette</h2>
             <h3 data-aos="fade-down" class="text-orange-300 font-semibold text-5xl text-center fw-explora">FOOD</h3>
-            <img class="mx-auto my-5 w-[70%]" src="{{ asset('images/line.png') }}" alt="">
+            <img class="mx-auto mb-5 w-[50%]" src="{{ asset('images/line2.png') }}" alt="">
+
             <div class="grid grid-cols-1 md:grid-cols-2 items-center">
                 <img data-aos="fade-right" class="h-full rounded-full" src="{{ asset('images/image3.jpg') }}" class="" alt="image2">
                 <div data-aos="fade-left" class="text-center">
@@ -86,7 +88,7 @@
         <div class="text-center">
             <h2 data-aos="fade-down" class="text-white text-center italic fw-dancing text-2xl">Let the Music Speak!</h2>
             <h3 data-aos="fade-down" class="text-orange-300 font-semibold text-5xl text-center fw-explora">SPECTACLE</h3>
-            <img class="mx-auto my-5 w-[70%]" src="{{ asset('images/line.png') }}" alt="">
+            <img class="mx-auto mb-5 w-[50%]" src="{{ asset('images/line2.png') }}" alt="">
             <div class="grid grid-cols-1 md:grid-cols-2 items-center">
                 <img data-aos="fade-right" class="h-full rounded-full" src="{{ asset('images/image4.png') }}" class="" alt="image2">
                 <div data-aos="fade-left" class="text-center">

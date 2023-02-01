@@ -7,6 +7,31 @@
     margin: 0;
 }
 
+* {
+    transition: all .5s ease-out;
+}
+
+.slide_photo {
+    transition: background 1s linear !important;
+}
+
+.text-orange-300 {
+    color: #ed5728 !important;
+}
+
+.bg-orange-300 {
+    background-color: #ed5728 !important;
+}
+
+.border-orange-300 {
+    border-color: #ed5728 !important;
+}
+
+a:hover,
+i:hover {
+    color: #ed5728 !important;
+}
+
 .ui-timepicker-container {
     z-index: 40 !important;
     background-color: #374151 !important;
@@ -45,7 +70,7 @@ header {
     background: rgb(0, 0, 0);
     height: 100px;
     /* z-index: 9999; */
-    border-bottom: 1px solid #BF9958;
+    border-bottom: 1px solid #ed5728;
 }
 
 header.scrolled {
@@ -206,11 +231,11 @@ ul.grt-menu li.grt-dropdown.active-dropdown a {
         display: block;
     }
     ul.grt-menu li.grt-dropdown:hover>a {
-        color: #BF9958;
+        color: #ed5728;
         box-shadow: inset 150px 0 0 0 #131618;
     }
     ul.grt-menu li a:hover {
-        color: #BF9958;
+        color: #ed5728;
         box-shadow: inset 150px 0 0 0 #131618;
     }
 }
@@ -238,7 +263,7 @@ ul.grt-menu li.grt-dropdown.active-dropdown a {
         right: 0;
         top: 10px;
         background: rgb(0, 0, 0);
-        color: #BF9958;
+        color: #ed5728;
         margin: 0;
         padding: 0;
         cursor: pointer;
@@ -250,7 +275,7 @@ ul.grt-menu li.grt-dropdown.active-dropdown a {
     .grt-mobile-button .line3 {
         width: 35px;
         height: 4px;
-        background-color: #BF9958;
+        background-color: #ed5728;
         margin: 6px 0;
         transition: 0.4s;
         display: block;
